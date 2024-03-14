@@ -46,6 +46,7 @@ nav li{
     padding-bottom: 20px;
     display: inline-block;
     position: relative;
+}
 
 .name {
     display: flex;

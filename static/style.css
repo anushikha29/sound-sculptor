@@ -79,15 +79,14 @@ header::after{
 
 nav li:hover{
     color: #c8b8a98c;
-    
-
 }
+
 nav a:hover{
     
     color: #797676;
 
 }
-nav a::before{
+.btm::before{
     
     content: '';
     height: 5px;
@@ -98,7 +97,7 @@ nav a::before{
     width: 0%;
     transition: all ease-in-out 250ms ;
 }
-nav a:hover::before{
+.btm:hover::before{
     width: 100%;
 }
 nav a{

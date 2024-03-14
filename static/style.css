@@ -1,13 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Ruda:wght@900&display=swap');
 
 body{
-    background-color: rgb(138, 119, 119);
+    margin: 0px;
+    background-color: #8e8b8b;
+}
+.floatingheader{
+    background: #444;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    
 }
 
 *{
     margin: 0;  
     padding: 0;
 }
+header::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
 
 nav{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -16,15 +31,21 @@ nav{
 
 nav ul{
     display: flex;
+    float: left;
     align-items:center;
     list-style-type: none;
     height: 120px;
-    background-color: rgb(51, 27, 23);
+    /* background-color: rgb(51, 27, 23); */
+    background-color: #444;
     color:beige;
 }
-
-nav ul li{
-    padding: 0 12px;
+nav li{
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-left: 30px;
+    padding-bottom: 20px;
+    display: inline-block;
+    position: relative;
 }
 
 .logo img{
@@ -37,4 +58,54 @@ nav ul li{
     font-weight: bolder;
     font-family: 'Ruda', sans-serif;
     font-size: 40px;
+}
+.bars{
+    
+    
+    float: right;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    
+    
+    
+}
+
+header::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+nav li:hover{
+    color: #c8b8a98c;
+    
+
+}
+nav a:hover{
+    
+    color: #797676;
+
+}
+nav a::before{
+    
+    content: '';
+    height: 5px;
+    
+    background-color: #bfbfbf;
+    position:absolute;
+    top: 156%;
+    width: 0%;
+    transition: all ease-in-out 250ms ;
+}
+nav a:hover::before{
+    width: 100%;
+}
+nav a{
+    color: beige;
+    text-decoration: none;
+    font-size: 1.23em;
+    border-top: 2px;
+    
+    
 }

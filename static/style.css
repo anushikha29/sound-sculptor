@@ -46,6 +46,7 @@ nav li{
     padding-bottom: 20px;
     display: inline-block;
     position: relative;
+}
 
 .name {
     display: flex;
@@ -105,7 +106,6 @@ nav li{
 .musicwave:nth-child(7){
     animation-delay: 0s;
 }
-
 .bars{
     
     
@@ -153,6 +153,5 @@ nav a{
     text-decoration: none;
     font-size: 1.23em;
     border-top: 2px;
-    
     
 }

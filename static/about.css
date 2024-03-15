@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ruda:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+
 
 body{
     margin: 0px;
@@ -62,7 +64,8 @@ nav li{
     align-items:center;
 }
 .bodylogo {
-    margin-left: 40% ;
+    width: 20%;
+    margin: auto;
     height:250px;
     display: flex;
     align-items:center;
@@ -181,3 +184,28 @@ nav a{
     
     
 }
+.bodyabout {
+    h1 {
+        display: inline;
+        font-size: 15vw;
+        text-transform: uppercase;
+        color: #F49E4C;
+      }
+      @media (min-width: 700px) {
+        h1 {
+          font-size: 9vw;
+        }
+      }
+      @media (min-width: 1400px) {
+        h1 {
+          font-size: 140px;
+        }
+      }
+      
+      @supports (-webkit-background-clip: text) {
+        h1 {
+          color: transparent;
+          background: linear-gradient(0deg, rgb(46, 46, 39) 50%, rgb(46, 46, 39) 0);
+          -webkit-background-clip: text;
+        }
+      }}

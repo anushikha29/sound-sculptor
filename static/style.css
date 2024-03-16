@@ -39,10 +39,19 @@ nav ul{
     background-color: #444;
     color:beige;
 }
+.placeholderheader{
+    
+    background: #444;
+    
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    
+}
 nav li{
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-left: 30px;
+    margin-right: .8vw;
+    margin-top: 1.5vh;
+    margin-left: 2vw;
     padding-bottom: 20px;
     display: inline-block;
     position: relative;
@@ -62,11 +71,13 @@ nav li{
     align-items:center;
 }
 .bodylogo {
-    margin-left: 40% ;
-    height:250px;
     display: flex;
-    align-items:center;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    height: 100vh; /* Set height to viewport height */
 }
+
+
 .bodylogo .musicwave{
 
     display: block;
@@ -81,6 +92,7 @@ nav li{
     animation: animate 1.5s linear infinite;   
 }
 .bodyabout{
+    justify-content: center;
     font-family: sans-serif;
     font-size: 3em;
     text-align: center;

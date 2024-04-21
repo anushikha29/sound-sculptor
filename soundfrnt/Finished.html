@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Sculptor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="node_modules/swup/dist/swup.min.js"></script>
+    <link rel="stylesheet" href="src/index.css" />
+</head>
+  <body>
+  <div id="root"></div>
+  
+  <div class="container1">
+    <div class="leftcont1">
+    <div class="section__container" >
+     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6MUZTSmM46xMhD1uHuOITO?utm_source=generator&theme=0" width="100%" height="452" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <button id="CrtPlaylistBtn" class="crt1">
+            Create Another Playlist
+            <span><i class="ri-arrow-right-line"></i></span>
+          </button>
+      </div>
+    </div>
+    <div class="rightcont">
+      <div class="section__container" >
+      <button id="ChngPlaylistNameBtn" class="crt">
+        Change Playlist Name
+        <span><i class="ri-arrow-right-line"></i></span>
+      </button>
+      <button id="SavePlaylistBtn" class="crt">
+        Save Playlist to Spotify
+        <span><i class="ri-arrow-right-line"></i></span>
+      </button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="/src/index.js"></script>  
+  <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

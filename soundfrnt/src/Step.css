@@ -1,0 +1,232 @@
+:root {
+    --primary-color: #a15ef8;
+    --white: #a7a3c4;
+    --max-width: 1200px;
+    --text: #a7a3c4;
+    --background: #1c1523;
+    --primary: #a15ef8;
+    --secondary: #573083;
+    --accent: #c3c3c3;
+  }
+h1 {
+    font-size: 58px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--text);
+}
+
+.subheading {
+    font-size: 28px;
+    color: var(--text);
+}
+
+.container2 {
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background);
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+                0 10px 10px rgba(0,0,0,0.22);
+    width: 55vw;
+    max-width: 80%;
+    min-height: 55vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container3 {
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background);
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+                0 10px 10px rgba(0,0,0,0.22);
+    width: 60vw;
+    max-width: 80%;
+    min-height: 55vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.step-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.mood-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--accent);
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--background);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mood-button:hover {
+    background-color: #999;
+}
+
+.next-button {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--accent);
+    color: var(--background);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+    background-color: #999;
+}
+
+.mood-button.selected {
+    background-color: #999;
+}
+
+.step2-buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.genre-button {
+    width: calc(50% - 10px);
+    height: 60px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: var(--accent);
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--background);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.genre-button.selected {
+    background-color: #999;
+}
+
+.next2-button {
+    
+    width: 50%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    /* position: absolute; */
+    
+    
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--accent);
+    color: var(--background);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    margin: 10px auto;
+    margin-left:50% ;
+}
+.next2-button:hover{
+    background-color: #858383;
+}
+
+
+.slider-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.slider {
+    flex-grow: 1;
+    margin: 0 10px;
+    -webkit-appearance: none; /* Override default CSS styles */
+            appearance: none;
+            width: 100%; /* Full-width */
+            height: 1px; /* Specified height */
+            background: var(--accent); /* Grey background */
+            outline: none; /* Remove outline */
+            opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+            -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+            margin-bottom: 5px;
+        }
+        .slider:hover {
+            opacity: 1; /* Fully shown on mouse-over */
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Override default look */
+            appearance: none;
+            width: 25px; /* Set a specific slider handle width */
+            height: 25px; /* Slider handle height */
+            background: black; /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+        .slider::-moz-range-thumb {
+            width: 25px; /* Set a specific slider handle width */
+            height: 25px; /* Slider handle height */
+            background: var(--background); /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+.word{
+    width: 119px;
+    text-align: center;
+}
+
+.next3-button {
+    
+    width: 50%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    /* position: absolute; */
+    
+    
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--accent);
+    color: var(--background);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    margin: 10px auto;
+    margin-left:50% ;
+}
+.next3-button:hover{
+    background-color: #858383;
+}
+

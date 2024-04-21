@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Sculptor</title>
+    <link rel="stylesheet" href="src/Step.css" />
+</head>
+  <body>
+  <div id="root"></div>
+  <div class="container3">
+    <h1>Step 3</h1>
+    <p class="subheading">Tweak your playlist</p>
+    <div class="slider-container">
+      
+  <!-- min_energy
+  min_instrumentalness
+  min_loudness
+  min_popularity
+  min_tempo -->
+      <div class="word">Electronic</div>
+      <input type="range" id='Acoustic' min="1" max="100" value="50" class="slider">
+      <div class="word">Acoustic</div>
+    </div>
+    <div class="slider-container">
+      <div class="word">Lethargy</div>
+      <input type="range" id='Energy' min="1" max="100" value="50" class="slider">
+      <div class="word">Energy</div>
+    </div>
+    <div class="slider-container">
+      <div class="word">Vocal</div>
+      <input type="range" min="1" id='Instrumental' max="100" value="50" class="slider">
+      <div class="word">Instrumental</div>
+    </div>
+    <div class="slider-container">
+      <div class="word">Quiet</div>
+      <input type="range" min="1" id="Loud" max="100" value="50" class="slider">
+      <div class="word">Loud</div>
+    </div>
+    <div class="slider-container">
+      <div class="word">Obscure</div>
+      <input type="range" min="1" max="100" id="Popular" value="50" class="slider">
+      <div class="word">Popular</div>
+    </div>
+    <div class="slider-container">
+      <div class="word">Pace</div>
+      <input type="range" id='Tempo' min="1" max="100" value="50" class="slider">
+      <div class="word">Tempo</div>
+    </div>
+
+
+    <button class="next3-button">Next</button>
+  </div>
+  <script src="/src/Step.js"></script>  
+  <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

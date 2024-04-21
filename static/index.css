@@ -8,7 +8,8 @@ body{
     background-color: #8e8b8b;
 }
 .floatingheader{
-    background-image: url("images/image.png");
+    background-color: azure;
+    background-image: url("images/image1.png");
     background-size: 100%;
     /* background: #444; */
     position: fixed;

@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.1.7",
+    "tailwind-merge": "^2.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4"
+  }
+}

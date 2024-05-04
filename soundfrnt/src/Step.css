@@ -65,7 +65,7 @@ h1 {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: var(--accent);
+    background-color: var(--text);
     border: none;
     font-size: 18px;
     font-weight: bold;
@@ -75,7 +75,7 @@ h1 {
 }
 
 .mood-button:hover {
-    background-color: #999;
+    background-color: #76719e;
 }
 
 .next-button {
@@ -85,10 +85,10 @@ h1 {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 10px 20px;
+    padding: 15px 25px;
     border: none;
     border-radius: 50%;
-    background-color: var(--accent);
+    background-color: #4c4681;
     color: var(--background);
     font-size: 16px;
     font-weight: bold;
@@ -97,11 +97,11 @@ h1 {
 }
 
 .next-button:hover {
-    background-color: #999;
+    background-color: #3a3563;
 }
 
 .mood-button.selected {
-    background-color: #999;
+    background-color: #6a62a3;
 }
 
 .step2-buttons {
@@ -116,7 +116,7 @@ h1 {
     height: 60px;
     margin: 5px;
     border-radius: 5px;
-    background-color: var(--accent);
+    background-color: var(--text);
     border: none;
     font-size: 16px;
     font-weight: bold;
@@ -126,7 +126,7 @@ h1 {
 }
 
 .genre-button.selected {
-    background-color: #999;
+    background-color: #76719e;
 }
 
 .next2-button {
@@ -144,7 +144,7 @@ h1 {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: var(--accent);
+    background-color: #4c4681;
     color: var(--background);
     font-size: 16px;
     font-weight: bold;
@@ -155,7 +155,7 @@ h1 {
     margin-left:50% ;
 }
 .next2-button:hover{
-    background-color: #858383;
+    background-color: #3a3563;
 }
 
 
@@ -172,7 +172,7 @@ h1 {
             appearance: none;
             width: 100%; /* Full-width */
             height: 1px; /* Specified height */
-            background: var(--accent); /* Grey background */
+            background: var(--text); /* Grey background */
             outline: none; /* Remove outline */
             opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
             -webkit-transition: .2s; /* 0.2 seconds transition on hover */
@@ -180,7 +180,8 @@ h1 {
             margin-bottom: 5px;
         }
         .slider:hover {
-            opacity: 1; /* Fully shown on mouse-over */
+            background: #76719e;
+             /* Fully shown on mouse-over */
         }
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none; /* Override default look */
@@ -216,7 +217,7 @@ h1 {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: var(--accent);
+    background-color: #4c4681;
     color: var(--background);
     font-size: 16px;
     font-weight: bold;
@@ -227,6 +228,6 @@ h1 {
     margin-left:50% ;
 }
 .next3-button:hover{
-    background-color: #858383;
+    background-color: #3a3563;
 }
 

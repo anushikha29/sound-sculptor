@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Sculptor</title>
+    <link rel="stylesheet" href="./src/index.css">
+</head>
+<body>
+    <div id="root"></div>
+    <div class="container">
+        <h1>Enter your prompt for playlist</h1>
+        <input type="text" id="promptInput" placeholder="Sample Prompt :- Sad meloncolic ">
+        
+        <button class="suggest-button" onclick="showRandomSuggestion()">Get Random Suggestion</button>
+
+        <ul id="suggestionsList"></ul>
+        <button class="suggest-button" onclick="finish()">Create Playlist</button>
+
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script src="./src/Step1Ai.js"></script>
+</body>
+</html>

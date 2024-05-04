@@ -1,35 +1,241 @@
 import os
-import sys
+import time
+from openai import OpenAI
 import json
-import server.main as main
-import webbrowser
-import spotipy.util as util
+import requests
 import spotipy
-from json.decoder import JSONDecodeError
-from spotipy.oauth2 import SpotifyClientCredentials
+from dotenv import load_dotenv
+from spotipy.oauth2 import SpotifyOAuth
+from flask import Flask, request, url_for, session, redirect, render_template
 
-def authenticate_spotify(client_id, client_secret):
-    auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
-    sp = main.spotipy(auth_manager=auth_manager)
-    return sp
+load_dotenv()
 
-# Example Usage
-client_id = "b8a1c5e58a694410a5a544534bb6f0b2"
-client_secret = "740fa7a3ee6d4847a28541145755b0c1"
-sp = authenticate_spotify(client_id, client_secret)
+client_id = os.getenv("CLIENT_ID")
+client_secret = os.getenv("CLIENT_SECRET")
+openai_api_key = os.getenv("OPENAI_API_KEY")
+app = Flask(__name__)
 
-#getting the username from terminal 
-username = "mfoygc7rlel9h55bh7i672jqc"
 
-#mfoygc7rlel9h55bh7i672jqc
-#erase the cache and prompt for user permission
+app.config['SESSION_COOKIE_NAME'] = 'sound_sculptor_cookie'
+app.secret_key= "jafh42ir8yf9wh^%$@g"
+TOKEN_INFO = 'token_info'
 
-try:
-    token = util.prompt_for_user_token(username)
-except:
-    os.remove(f".cache-{username}")
-    token = util.prompt_for_user_token(username)
+@app.route('/')
+def login():
+    auth_url = authenticate_spotify().get_authorize_url()
+    return redirect(auth_url)
 
-#create our spotify object
+@app.route('/redirect')
+def redirect_page():
+    code = request.args.get('code')
+    token_info = authenticate_spotify().get_access_token(code)
+    session[TOKEN_INFO] = token_info
+    return redirect(url_for('save_generated_playlist', external = True))
+
+@app.route('/saveGeneratedPlaylist')
+
+def save_generated_playlist():
+    try:
+        token_info = get_token()
+    except:
+        print("User not logged in")
+        return redirect('/')
+    sp=spotipy.Spotify(auth=token_info['access_token'])
+    user_id = sp.current_user()['id']
+    saved_weekly_playlist_id = None
     
-spotifyObject = main.spotipy(auth=token)
+    def get_all_playlists(sp):
+        playlists = []
+        results = sp.current_user_playlists()
+        playlists.extend(results['items'])
+        while results['next']:
+            results = sp.next(results)
+            playlists.extend(results['items'])
+        return playlists
+
+    current_playlists = get_all_playlists(sp)
+
+    for playlist in current_playlists:
+        if(playlist['name']== "Discover Weekly"):
+            discover_weekly_playlist_id = playlist['id']
+        if(playlist['name']=="Saved Weekly"):
+            saved_weekly_playlist_id = playlist['id']
+    if not discover_weekly_playlist_id:
+        return 'Discover Weekly not found'
+    if not saved_weekly_playlist_id:
+        new_playlist = sp.user_playlist_create(user_id, 'Saved Weekly', True)
+        saved_weekly_playlist_id = new_playlist['id']
+    
+    discover_weekly_playlist = sp.playlist_items(discover_weekly_playlist_id)
+    song_uris = []
+    for song in discover_weekly_playlist['items']:
+        song_uri=song['track']['uri']
+        song_uris.append(song_uri)
+    sp.user_playlist_add_tracks(user_id, saved_weekly_playlist_id, song_uris, None)
+    return("SUCCESSS")
+
+@app.route('/user_data')
+def get_user_data():
+    try:
+        token_info = get_token()
+    except:
+        print("User not logged in")
+        return redirect('/')
+    sp=spotipy.Spotify(auth=token_info['access_token'])
+    user_id = sp.current_user()['id']
+    
+    user_playlists = sp.current_user_playlists()
+    user_albums = sp.current_user_saved_albums()
+    user_top_artists = sp.current_user_top_artists()
+    user_top_tracks = sp.current_user_top_tracks()
+    
+    return(user_playlists)
+
+@app.route('/ai_generated_playlist')
+def ai_generated():
+    try:
+        token_info = get_token()
+    except:
+        print("User not logged in")
+        return redirect('/')
+    sp=spotipy.Spotify(auth=token_info['access_token'])
+    user_id = sp.current_user()['id']
+    #prompt from the frontend entered by the user
+    #song_count from the frontend entered by the user
+    client = OpenAI()
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system",
+             "content": "You are a MusicGPT, world's greates music recommendation AI. Given a description of a user's music preference, you will recommend songs tailored to the user's preferences. You can create the best and most accurate playlists"
+             },
+            {
+                "role" :"user",
+                "content" : f"Create a playlist with minimum 10 songs recommendations and maximum 30 songs recommendations that fits the following description prompt. Come up with a creative name for the playlist as well"
+            },
+        ],
+        functions=[
+                {
+                    "name": "create_playlist",
+                    "description": "Creates a spotify playlist based on a list of songs that should be added to the list.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "playlist_name": {
+                                "type": "string",
+                                "description": "Name of playlist",
+                            },
+                            "playlist_description": {
+                                "type": "string",
+                                "description": "Description for the playlist. Please add that this playlist was generated by an AI.",
+                            },
+                            "songs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "songname": {
+                                            "type": "string",
+                                            "description": "Name of the song that should be added to the playlist",
+                                        },
+                                        "artists": {
+                                            "type": "array",
+                                            "description": "List of all artists",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "Name of artist of the song",
+                                            },
+                                        },
+                                    },
+                                    "required": ["songname", "artists"],
+                                },
+                            },
+                        },
+                        "required": ["songs", "playlist_name", "playlist_description"],
+                    },
+                },   
+        ]
+    )
+    arguments = json.load(
+        response["choices"[0]["message"]["function_call"]["arguments"]]
+    )
+    playlist_name = arguments["playlist_name"]
+    playlist_description = arguments["playlist_description"]
+    recommended_songs = arguments["songs"]
+    
+    song_uris = [
+    sp.search(
+        q=f"{song['songname']} {','.join(song['artists'])}", limit=1
+    )["tracks"]["items"][0]["uri"]
+    for song in recommended_songs
+    ]
+
+    user_id = sp.me()["id"]
+    playlist = sp.user_playlist_create(
+        user_id, playlist_name, False, description=playlist_description
+    )
+    playlist_id = playlist["id"]
+    sp.playlist_add_items(playlist_id, song_uris)
+    
+    
+def get_token():
+    token_info = session.get(TOKEN_INFO,None)
+    if not token_info:
+        redirect(url_for('login', external=False))
+    
+    now = int(time.time())
+    
+    is_expired = token_info['expires_at'] - now <60
+    if(is_expired):
+        spotify_oauth = authenticate_spotify()
+        token_info = spotify_oauth.refresh_access_token(token_info['refresh_token'])
+    
+    return token_info
+
+def authenticate_spotify():
+    return SpotifyOAuth(
+        client_id=client_id,
+        client_secret=client_secret,
+        redirect_uri=url_for('redirect_page', _external= True),
+        scope='user-library-read playlist-read-private user-top-read playlist-modify-public'
+        )
+
+# @app.route('/input_preferences', methods=['GET', 'POST'])
+# def input_preferences():
+#     if request.method == 'POST':
+#         mood = request.form.get('mood')
+#         genre = request.form.get('genre')
+#         # Store these preferences in the session or database for later use
+#         session['mood'] = mood
+#         session['genre'] = genre
+#         return redirect(url_for('generate_playlist'))
+#     return render_template('input_preferences.html')
+
+# @app.route('/generate_curated_playlist')
+# def generate_playlist():
+#     try:
+#         token_info = get_token()
+#     except:
+#         print("User not logged in")
+#         return redirect('/')
+#     sp = spotipy.Spotify(auth=token_info['access_token'])
+#     user_id = sp.current_user()['id']
+    
+#     # Retrieve user's mood and genre preferences from the session
+#     mood = session.get('mood')
+#     genre = session.get('genre')
+
+#     # Use these preferences to generate a playlist
+#     # This is where you'll integrate with the Spotify API to create a playlist
+#     # based on the user's preferences
+    
+#     # For demonstration, let's create a simple playlist
+#     new_playlist = sp.user_playlist_create(user_id, 'Generated Playlist', True)
+#     playlist_id = new_playlist['id']
+    
+#     # Add tracks to the playlist based on the user's preferences
+#     # This is where you'll use the Spotify "Get Recommendations" API
+    
+#     return f"Playlist {playlist_id} created successfully!"
+
+app.run(debug=True)

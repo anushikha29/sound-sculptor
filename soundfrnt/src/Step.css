@@ -38,20 +38,25 @@ h1 {
 }
 
 .container3 {
-    margin: 0 auto;
-    position: absolute;
+    
+    position: relative;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 5vw;
+    
     background-color: var(--background);
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
                 0 10px 10px rgba(0,0,0,0.22);
-    width: 60vw;
-    max-width: 80%;
+    width: 90vw;
+    max-width: 90%;
     min-height: 55vh;
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     box-sizing: border-box;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .step-buttons {
@@ -170,14 +175,15 @@ h1 {
     margin: 0 10px;
     -webkit-appearance: none; /* Override default CSS styles */
             appearance: none;
-            width: 100%; /* Full-width */
-            height: 1px; /* Specified height */
+            width: 90%; /* Full-width */
+            height: 2px; /* Specified height */
             background: var(--text); /* Grey background */
-            outline: none; /* Remove outline */
+             /* Remove outline */
             opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
             -webkit-transition: .2s; /* 0.2 seconds transition on hover */
             transition: opacity .2s;
             margin-bottom: 5px;
+            margin-top: 2px;
         }
         .slider:hover {
             background: #76719e;
@@ -186,13 +192,13 @@ h1 {
         .slider::-webkit-slider-thumb {
             -webkit-appearance: none; /* Override default look */
             appearance: none;
-            width: 25px; /* Set a specific slider handle width */
-            height: 25px; /* Slider handle height */
+            width: 5px; /* Set a specific slider handle width */
+            height: 5px; /* Slider handle height */
             background: black; /* Green background */
             cursor: pointer; /* Cursor on hover */
         }
         .slider::-moz-range-thumb {
-            width: 25px; /* Set a specific slider handle width */
+            width: 1rem; /* Set a specific slider handle width */
             height: 25px; /* Slider handle height */
             background: var(--background); /* Green background */
             cursor: pointer; /* Cursor on hover */
@@ -226,6 +232,7 @@ h1 {
     align-items: center;
     margin: 10px auto;
     margin-left:50% ;
+    margin-bottom: 10px;
 }
 .next3-button:hover{
     background-color: #3a3563;

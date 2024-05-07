@@ -10,7 +10,7 @@ function Header(){
               <ul>
                 <li className="logo"><HeadLogo /></li>
                 <li className="name"><a href="index.html"> Sound Sculptor</a></li>
-                <li><a href className="btm">Home</a></li>
+                <li><a href ="Blog.html" className="btm">Blog</a></li>
                 <li><a href ="About.html" className="btm">About</a></li>
               </ul>
               <ul className="bars">    

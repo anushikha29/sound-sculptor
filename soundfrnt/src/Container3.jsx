@@ -23,7 +23,7 @@ function Container3() {
         // Send data to Flask API
         fetch('http://127.0.0.1:5000/predict', {
             method: 'POST',
-            headers: {
+            headers: {  
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formData)
@@ -42,39 +42,39 @@ function Container3() {
             <h1 className="tweak">Tweak your playlist</h1>
 
             <div className="slider-container">
-                
+            <div className="word">Acoustic</div>
                 <input type="range" id='acousticness' min="0" max="100" defaultValue="0" className="slider" />
-                <div className="word">Acoustic</div>
+                
             </div>
             <div className="slider-container">
-                
+            <div className="word">Energy</div>
                 <input type="range" id='energy' min="0" max="100" defaultValue="0" className="slider"></input>
-                <div className="word">Energy</div>
+                
             </div>
             <div className="slider-container">
-               
+            <div className="word">Instrumental</div>
                 <input type="range" min="0" id='instrumentalness' max="100" defaultValue="0" className="slider"></input>
-                <div className="word">Instrumental</div>
+                
             </div>
             <div className="slider-container">
-                
+            <div className="word">Loud</div>
                 <input type="range" min="0" id="loudness" max="100" defaultValue="0" className="slider"></input>
-                <div className="word">Loud</div>
+                
             </div>
             <div className="slider-container">
-                
+            <div className="word">Liveness</div>
                 <input type="range" min="0" max="100" id="liveness" defaultValue="0" className="slider"></input>
-                <div className="word">Liveness</div>
+                
             </div>
             <div className="slider-container">
-                
+            <div className="word">Tempo</div>
                 <input type="range" id='tempo' min="0" max="100" defaultValue="0" className="slider"></input>
-                <div className="word">Tempo</div>
+                
             </div>
             <div className="slider-container">
-                
+            <div className="word">Dance</div>
                 <input type="range" id='danceability' min="0" max="100" defaultValue="0" className="slider"></input>
-                <div className="word">Dance</div>
+                
             </div>
 
 

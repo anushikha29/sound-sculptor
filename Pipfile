@@ -5,6 +5,11 @@ name = "pypi"
 
 [packages]
 flask = "*"
+flask-cors = "*"
+joblib = "*"
+numpy = "*"
+pandas = "*"
+scikit-learn = "*"
 
 [dev-packages]
 

@@ -16,34 +16,34 @@ function showRandomSuggestion() {
         "Study Focus",
         "Soulful Sundays",
         "Summer Breeze",
-    "Morning Coffee",
-    "Epic Movie Soundtracks",
-    "Dance Party Hits",
-    "Acoustic Serenade",
-    "90s Nostalgia",
-    "Feel-Good Pop",
-    "Relaxing Rain Sounds",
-    "Feel-Good R&B",
-    "Sunset Chill",
-    "Feel-Good Rock",
-    "Smooth Jazz",
-    "Classical Relaxation",
-    "Motivation Boost",
-    "Country Road Trip",
-    "Funky Grooves",
-    "Electronic Beats",
-    "Throwback Thursday",
-    "Latin Fiesta",
-    "Reggae Vibes",
-    "Motown Classics",
-    "Ambient Dreams",
-    "80s Flashback",
-    "Blues & BBQ",
-    "Retro Rewind",
-    "Hip Hop Chillout",
-    "Piano Reflections",
-    "Folk Favorites",
-    "Jazz Lounge"
+        "Morning Coffee",
+        "Epic Movie Soundtracks",
+        "Dance Party Hits",
+        "Acoustic Serenade",
+        "90s Nostalgia",
+        "Feel-Good Pop",
+        "Relaxing Rain Sounds",
+        "Feel-Good R&B",
+        "Sunset Chill",
+        "Feel-Good Rock",
+        "Smooth Jazz",
+        "Classical Relaxation",
+        "Motivation Boost",
+        "Country Road Trip",
+        "Funky Grooves",
+        "Electronic Beats",
+        "Throwback Thursday",
+        "Latin Fiesta",
+        "Reggae Vibes",
+        "Motown Classics",
+        "Ambient Dreams",
+        "80s Flashback",
+        "Blues & BBQ",
+        "Retro Rewind",
+        "Hip Hop Chillout",
+        "Piano Reflections",
+        "Folk Favorites",
+        "Jazz Lounge"
         // Add more example prompts here as needed
     ];
 
@@ -68,6 +68,24 @@ function showRandomSuggestion() {
         suggestionsList.appendChild(noSuggestionsItem);
     }
 }
-function finish(){
-    window.location.href=("Finished.html");
+
+function finish() {
+  const promptInput = document.getElementById('promptInput').value.trim();
+
+  fetch('localhost:5000/ai_generated_playlist', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ prompt: promptInput })
+  })
+   .then(response => response.json())
+   .then(data => {
+      if (data.success) {
+        window.location.href = 'Finished.html';
+      } else {
+        alert('Failed to create playlist. Please try again later.');
+      }
+    })
+   .catch(error => console.error(error));
 }

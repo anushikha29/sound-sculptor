@@ -1,2 +1,0 @@
-server/model.pkl filter=lfs diff=lfs merge=lfs -text
-server/tracks_features.csv filter=lfs diff=lfs merge=lfs -text

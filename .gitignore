@@ -1,2 +1,4 @@
 .env
 .cache
+server/model.pkl
+server/tracks_features.csv
